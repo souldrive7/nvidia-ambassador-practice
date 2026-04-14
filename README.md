@@ -1,23 +1,33 @@
 # NVIDIA Ambassador Practice
 
-NVIDIA Build API を使って、WSL Ubuntu から Python で推論APIを呼び出す練習用コードです。
+NVIDIA Build API, Docker, NGC PyTorch Container, GPU-enabled PyTorch を学ぶための練習用プロジェクトです。
 
-## 実行前提
-- WSL2 Ubuntu
-- Python 3
-- requests
-- NVIDIA_API_KEY を環境変数に設定済み
+## このプロジェクトで確認したこと
+- WSL2 Ubuntu で Linux コマンドを使う
+- NVIDIA Build API を Python から呼ぶ
+- GitHub でコード管理する
+- Docker で実行環境を管理する
+- NGC の PyTorch コンテナを pull / run する
+- GPU がコンテナ内から見えることを確認する
+- PyTorch で GPU テンソル計算を行う
+
+## ファイル
+- `my_ai_nvidia.py` : NVIDIA Build API を呼ぶサンプル
+- `gpu_check.py` : PyTorch と GPU の確認用スクリプト
+- `run_pytorch.sh` : NGC PyTorch コンテナ起動用スクリプト
+
+## 事前準備
+- Docker が使えること
+- `NVIDIA_API_KEY` が環境変数に設定されていること
+- NGC にログイン済みであること
 
 ## 使い方
-```bash
-python3 my_ai_nvidia.py
 
-## Git 初期化
+### 1. PyTorch コンテナに入る
 ```bash
-git init
-git status
-cat > .gitignore <<'EOF'
-__pycache__/
-*.pyc
-response.json
-.env
+./run_pytorch.sh
+2. GPU確認
+python gpu_check.py
+3. NVIDIA Build API確認
+python my_ai_nvidia.py
+
